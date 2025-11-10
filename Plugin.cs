@@ -1,4 +1,5 @@
 ﻿using BepInEx;
+using BOSpecialFools.Characters;
 using System;
 
 namespace BOSpecialFools
@@ -12,6 +13,7 @@ namespace BOSpecialFools
 
         public void Awake()
         {
+            AStar.Init();
         }
     }
 }
