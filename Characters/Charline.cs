@@ -37,7 +37,7 @@ namespace BOSpecialFools.Characters
                     _ => "an equivalent amount of"
                 };
                 var ab2Name = "Ability 2";
-                var ab2Description = $"Make the left ally use a random one of their abilities (except Slap). Convert any damage that they would deal while performing these abilities into {ab2HealScalingString} healing applies to the target's opposing position(s).";
+                var ab2Description = $"Make the left ally use a random one of their abilities (except Slap). Convert any damage that they would deal while performing this ability into {ab2HealScalingString} healing applied to the target's opposing position(s).";
                 var ab2 = NewAbility($"Charline2_{abRank}_A")
                 .SetBasicInformation(ab2Name, ab2Description)
                 .SetEffects(new()
