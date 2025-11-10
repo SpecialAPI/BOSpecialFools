@@ -10,9 +10,12 @@ namespace BOSpecialFools
         public const string MOD_GUID = "SpecialAPI.BOSpecialFools";
         public const string MOD_NAME = "SpecialAPI's Fools";
         public const string MOD_VERSION = "0.0.0";
+        public const string MOD_PREFIX = "BOSpecialFools";
 
         public void Awake()
         {
+            ProfileManager.RegisterMod(MOD_GUID, MOD_PREFIX);
+
             AStar.Init();
         }
     }
