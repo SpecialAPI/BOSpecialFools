@@ -32,7 +32,7 @@ namespace BOSpecialFools.Characters
                     }), ab1NumAbilitiesPerformed, Targeting.Slot_SelfSlot),
                     Effects.GenerateEffect(CreateScriptable<HealEffect>(), ab1Healing, Targeting.Slot_SelfSlot)
                 })
-                .AddIntent(Targeting.Slot_SelfSlot, IntentType_GameIDs.Misc_Hidden.ToString(), IntentType_GameIDs.Misc.ToString())
+                .AddIntent(Targeting.Slot_SelfSlot, IntentType_GameIDs.Misc_Hidden.ToString(), IntentType_GameIDs.Misc.ToString(), IntentForHealing(ab1Healing))
                 .AddToCharacterDatabase()
                 .CharacterAbility(Pigments.Yellow, Pigments.Blue, Pigments.Red);
 
