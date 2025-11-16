@@ -10,7 +10,8 @@ namespace BOSpecialFools.Characters
         public static void Init()
         {
             var ch = NewCharacter("Charline_CH", "Charline")
-                .SetBasicInformation("Charline", Pigments.Blue, null, null, null);
+                .SetBasicInformation("Charline", Pigments.Blue, null, null, null)
+                .AddUnitTypes("FemaleID");
 
             ch.RankedDataSetup(4, (rank, abRank) =>
             {
