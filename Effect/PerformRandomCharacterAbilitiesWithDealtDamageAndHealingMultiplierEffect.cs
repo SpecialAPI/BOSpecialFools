@@ -9,6 +9,7 @@ namespace BOSpecialFools.Effect
     {
         public int healMultiplier = 1;
         public int damageMultiplier = 1;
+        public int abilitiesRank = -1;
 
         public override bool PerformEffect(CombatStats stats, IUnit caster, TargetSlotInfo[] targets, bool areTargetSlots, int entryVariable, out int exitAmount)
         {
@@ -20,7 +21,9 @@ namespace BOSpecialFools.Effect
                     continue;
 
                 var u = t.Unit;
-                var abilities = LoadedDBsHandler.AbilityDB.GetRandomCharacterAbilities(entryVariable);
+                var abilities = abilitiesRank < 0 ?
+                    LoadedDBsHandler.AbilityDB.GetRandomCharacterAbilities(entryVariable) :
+                    RankedAbilitiesDatabase.GetRandomAbilitiesOfRank(abilitiesRank, entryVariable);
 
                 var hasHealingMod = healMultiplier != 1;
                 var hasDamageMod = damageMultiplier != 1;

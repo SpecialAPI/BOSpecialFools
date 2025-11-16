@@ -19,5 +19,10 @@ namespace BOSpecialFools
             AStar.Init();
             Charline.Init();
         }
+
+        public void Start()
+        {
+            RankedAbilitiesDatabase.Init();
+        }
     }
 }

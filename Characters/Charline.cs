@@ -17,13 +17,19 @@ namespace BOSpecialFools.Characters
                 var hp = RankedValue(7, 8, 10, 11);
 
                 var ab1NumAbilitiesPerformed = RankedValue(3, 4, 5, 6);
+                var ab1Healing = RankedValue(1, 1, 2, 2);
                 var ab1Name = "Ability 1";
-                var ab1Description = $"Perform {ab1NumAbilitiesPerformed} random party member abilities back to back. Prevent any damage that would be dealt by this party member while performing these abilities.";
+                var ab1Description = $"Perform {ab1NumAbilitiesPerformed} random level 1 party member abilities back to back. Prevent any damage that would be dealt by this party member while performing these abilities.\nHeal this party member {ab1Healing} health.";
                 var ab1 = NewAbility($"Charline1_{abRank}_A")
                 .SetBasicInformation(ab1Name, ab1Description)
                 .SetEffects(new()
                 {
-                    Effects.GenerateEffect(CreateScriptable<PerformRandomCharacterAbilitiesWithDealtDamageAndHealingMultiplierEffect>(x => x.damageMultiplier = 0), ab1NumAbilitiesPerformed, Targeting.Slot_SelfSlot)
+                    Effects.GenerateEffect(CreateScriptable<PerformRandomCharacterAbilitiesWithDealtDamageAndHealingMultiplierEffect>(x =>
+                    {
+                        x.damageMultiplier = 0;
+                        x.abilitiesRank = 0;
+                    }), ab1NumAbilitiesPerformed, Targeting.Slot_SelfSlot),
+                    Effects.GenerateEffect(CreateScriptable<HealEffect>(), ab1Healing, Targeting.Slot_SelfSlot)
                 })
                 .AddIntent(Targeting.Slot_SelfSlot, IntentType_GameIDs.Misc_Hidden.ToString(), IntentType_GameIDs.Misc.ToString())
                 .AddToCharacterDatabase()
