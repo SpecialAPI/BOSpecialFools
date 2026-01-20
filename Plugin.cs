@@ -16,8 +16,8 @@ namespace BOSpecialFools
         {
             ProfileManager.RegisterMod(MOD_GUID, MOD_PREFIX);
 
-            AStar.Init();
-            Charline.Init();
+            //AStar.Init();
+            //Charline.Init();
         }
 
         public void Start()
