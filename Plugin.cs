@@ -24,6 +24,7 @@ namespace BOSpecialFools
 
             //AStar.Init();
             //Charline.Init();
+            Wreath.Init();
         }
 
         public void Start()
