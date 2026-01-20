@@ -12,9 +12,15 @@ namespace BOSpecialFools
         public const string MOD_VERSION = "0.0.0";
         public const string MOD_PREFIX = "BOSpecialFools";
 
+        public static Harmony HarmonyInstance;
+
         public void Awake()
         {
             ProfileManager.RegisterMod(MOD_GUID, MOD_PREFIX);
+
+            HarmonyInstance = new Harmony(MOD_GUID);
+            HarmonyInstance.PatchAll();
+            
 
             //AStar.Init();
             //Charline.Init();
