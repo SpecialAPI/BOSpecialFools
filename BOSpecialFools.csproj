@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\Pentacle\bin\Release\netstandard2.0\Assembly-CSharp.dll</HintPath>
+      <HintPath>..\References\BrutalOrchestra\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="BrutalAPI">
       <HintPath>..\Pentacle\bin\Release\netstandard2.0\BrutalAPI.dll</HintPath>
