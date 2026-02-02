@@ -22,7 +22,7 @@ namespace BOSpecialFools.Characters
                     trigger = LocalCustomTriggers.OnAnyoneDamaged,
                     immediate = true,
                     
-                    effect = new SetUnitHolderStoredValueToCurrentTurnTriggerEffect(trackSv._UnitStoreDataID)
+                    effect = new SetUnitHolderStoredValueToCurrentTurnTriggerEffect(trackSv._UnitStoreDataID, 1)
                 }
             };
             ch.AddHiddenEffects(tracker);
