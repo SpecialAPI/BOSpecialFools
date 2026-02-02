@@ -19,17 +19,17 @@ namespace BOSpecialFools.CustomTrigger.Patches
             if (!crs.JumpToNext(x => x.MatchCallOrCallvirt<CombatManager>(nameof(CombatManager.PostNotification)), 2))
                 return;
 
-            crs.Emit(OpCodes.Ldarg_0);
+            crs.Emit(OpCodes.Ldloc, 8);
             crs.Emit(OpCodes.Ldarg, 6);
             crs.Emit(OpCodes.Call, oad_te);
         }
 
-        private static void OnAnyoneDamaged_TriggerEvent(IUnit u, bool direct)
+        private static void OnAnyoneDamaged_TriggerEvent(IntegerReference_Damage intref, bool direct)
         {
-            CombatManager.Instance.ProcessImmediateAction(new TriggerUnitGeneralEventAction(LocalCustomTriggers.OnAnyoneDamaged, u));
+            CombatManager.Instance.ProcessImmediateAction(new TriggerUnitGeneralEventAction(LocalCustomTriggers.OnAnyoneDamaged, intref));
 
-            if(direct)
-                CombatManager.Instance.ProcessImmediateAction(new TriggerUnitGeneralEventAction(LocalCustomTriggers.OnAnyoneDirectDamaged, u));
+            if (direct)
+                CombatManager.Instance.ProcessImmediateAction(new TriggerUnitGeneralEventAction(LocalCustomTriggers.OnAnyoneDirectDamaged, intref));
         }
     }
 }
