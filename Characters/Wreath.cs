@@ -35,7 +35,7 @@ namespace BOSpecialFools.Characters
                 var abilityADamage = RankedValue(6, 8, 10, 12);
                 var abilityA = NewAbility($"WreathA_{abilityRank}_A")
                 .SetBasicInformationCharacter($"Ability A {abilityRank}", $"Deal {abilityADamage} damage to All enemies that received any damage this turn.")
-                .SetVisuals(Visuals.Parry, abATargeting)
+                .SetVisuals(Visuals.Clobber_Left, abATargeting)
                 .SetEffects(new()
                 {
                     Effects.GenerateEffect(CreateScriptable<DamageEffect>(), abilityADamage, abATargeting)
@@ -51,7 +51,7 @@ namespace BOSpecialFools.Characters
                 var abilityBDamageNotFull = RankedValue(8, 11, 14, 16);
                 var abilityB = NewAbility($"WreathB_{abilityRank}_A")
                 .SetBasicInformationCharacter($"Ability B {abilityRank}", $"If the Opposing enemy is at full health, deal {abilityBDamageFullHealth} to them.\nOtherwise, deal {abilityBDamageNotFull} damage to the Opposing enemy and reduce their maximum health to their current health value.")
-                .SetVisuals(Visuals.Burn, Targeting.Slot_Front)
+                .SetVisuals(Visuals.Flay, Targeting.Slot_Front)
                 .SetEffects(new()
                 {
                     Effects.GenerateEffect(CreateScriptable<CheckTargetsAtMaxHealthEffect>(), 0, Targeting.Slot_Front),
