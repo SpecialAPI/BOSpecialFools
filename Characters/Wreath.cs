@@ -84,6 +84,10 @@ namespace BOSpecialFools.Characters
             });
 
             ch.AddToDatabase();
+
+            var menu = ch.GenerateMenuCharacter("WreathUnlocked", "WreathLocked");
+            menu.SetAsFullDPS();
+            menu.AddToDatabase();
         }
     }
 }

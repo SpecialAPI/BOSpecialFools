@@ -9,13 +9,17 @@
   <ItemGroup>
     <None Remove="Resources\WreathBack.png" />
     <None Remove="Resources\WreathFront.png" />
+    <None Remove="Resources\WreathLocked.png" />
     <None Remove="Resources\WreathOW.png" />
+    <None Remove="Resources\WreathUnlocked.png" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\WreathBack.png" />
     <EmbeddedResource Include="Resources\WreathFront.png" />
+    <EmbeddedResource Include="Resources\WreathLocked.png" />
     <EmbeddedResource Include="Resources\WreathOW.png" />
+    <EmbeddedResource Include="Resources\WreathUnlocked.png" />
   </ItemGroup>
 
   <ItemGroup>
