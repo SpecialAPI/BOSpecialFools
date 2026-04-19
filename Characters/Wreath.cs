@@ -51,14 +51,18 @@ namespace BOSpecialFools.Characters
                 var abilityBDamageFullHealth = RankedValue(5, 6, 7, 8);
                 var abilityBDamageNotFull = RankedValue(8, 11, 14, 16);
                 var abilityB = NewAbility($"WreathB_{abilityRank}_A")
-                .SetBasicInformation($"Ability B {abilityRank}", $"Deal {abilityBDamageFullHealth} damage to the Opposing damage. If the enemy is not at full health, deal {abilityBDamageNotFull} damage instead.")
+                .SetBasicInformation($"Ability B {abilityRank}", $"If the Opposing enemy is at full health, deal {abilityBDamageFullHealth} to them.\nOtherwise, deal {abilityBDamageNotFull} damage to the Opposing enemy and reduce their maximum health to their current health value.")
                 .SetVisuals(Visuals.Burn, Targeting.Slot_Front)
                 .SetEffects(new()
                 {
-                    Effects.GenerateEffect(CreateScriptable<ExtraVariableForNextEffect>(), abilityBDamageFullHealth),
-                    Effects.GenerateEffect(CreateScriptable<DamageByEntryOrPrevExitIfFullHealth>(), abilityBDamageNotFull, Targeting.Slot_Front)
+                    Effects.GenerateEffect(CreateScriptable<CheckTargetsAtMaxHealthEffect>(), 0, Targeting.Slot_Front),
+
+                    Effects.GenerateEffect(CreateScriptable<DamageEffect>(), abilityBDamageFullHealth, Targeting.Slot_Front, Effects.CheckPreviousEffectCondition(true, 1)),
+
+                    Effects.GenerateEffect(CreateScriptable<DamageEffect>(), abilityBDamageNotFull, Targeting.Slot_Front, Effects.CheckPreviousEffectCondition(false, 2)),
+                    Effects.GenerateEffect(CreateScriptable<ChangeMaxHealthByCurrentHealthEffect>(), 0, Targeting.Slot_Front, Effects.CheckPreviousEffectCondition(false, 3)),
                 })
-                .AddIntent(Targeting.Slot_Front, IntentType_GameIDs.Misc_Hidden.ToString(), IntentForDamage(abilityBDamageFullHealth), IntentForDamage(abilityBDamageNotFull))
+                .AddIntent(Targeting.Slot_Front, IntentType_GameIDs.Misc_Hidden.ToString(), IntentForDamage(abilityBDamageFullHealth), IntentForDamage(abilityBDamageNotFull), IntentType_GameIDs.Other_MaxHealth.ToString())
                 .AddToCharacterDatabase()
                 .CharacterAbility(Pigments.Red, Pigments.Yellow);
 
