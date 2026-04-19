@@ -7,6 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\WreathBack.png" />
+    <None Remove="Resources\WreathFront.png" />
+    <None Remove="Resources\WreathOW.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\WreathBack.png" />
+    <EmbeddedResource Include="Resources\WreathFront.png" />
+    <EmbeddedResource Include="Resources\WreathOW.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="BepInEx.Core" Version="5.4.21" />
     <PackageReference Include="UnityEngine.Modules" Version="2020.3.26">
       <PrivateAssets>all</PrivateAssets>
