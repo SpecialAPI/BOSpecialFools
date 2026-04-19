@@ -66,29 +66,22 @@ namespace BOSpecialFools.Characters
                 .AddToCharacterDatabase()
                 .CharacterAbility(Pigments.Red, Pigments.Yellow);
 
-                var abilityCDamage = RankedValue(6, 7, 9, 10);
-                var abCTargeting = Targeting.Unit_AllOpponents.FilterByHealth(true, true);
-                var abCPerformEffect = CreateScriptable<CasterPerformEffectsEffect>();
-                abCPerformEffect.effects = new()
-                {
-                    Effects.GenerateEffect(CreateScriptable<PerformEffectsOnRandomTargetEffect>(x => x.effects = new()
-                    {
-                        Effects.GenerateEffect(CreateScriptable<AnimationVisualsOnEffectTargetsEffect>(x2 => x2.visuals = Visuals.Decimate)),
-                        Effects.GenerateEffect(CreateScriptable<DamageEffect>(x => x._returnKillAsSuccess = true), abilityCDamage)
-                    }), 0, abCTargeting),
-                    Effects.GenerateEffect(abCPerformEffect, condition: Effects.CheckPreviousEffectCondition(true, 1))
-                };
+                var abilityCDamage = RankedValue(6, 7, 8, 9);
                 var abilityC = NewAbility($"WreathC_{abilityRank}_A")
-                .SetBasicInformation($"Ability C {abilityRank}", $"Deal {abilityCDamage} damage to a Random enemy with the lowest health. If this kills, repeat this ability.")
-                .SetEffects([Effects.GenerateEffect(abCPerformEffect)])
+                .SetBasicInformation($"Ability C {abilityRank}", $"Deal {abilityCDamage} damage to the Opposing enemy. If this kills, refresh this party member.")
+                .SetVisuals(Visuals.Decimate, Targeting.Slot_Front)
+                .SetEffects(new()
+                {
+                    Effects.GenerateEffect(CreateScriptable<DamageEffect>(x => x._returnKillAsSuccess = true), abilityCDamage, Targeting.Slot_Front),
+                    Effects.GenerateEffect(CreateScriptable<RefreshAbilityUseEffect>(), 0, Targeting.Slot_SelfSlot, Effects.CheckPreviousEffectCondition(true, 1))
+                })
                 .SetIntents(new()
                 {
-                    TargetIntent(Targeting.Unit_AllOpponents, IntentType_GameIDs.Misc_Hidden.ToString()),
-                    TargetIntent(Targeting.Spec_Unit_AllOpponents_Weakest, IntentForDamage(abilityCDamage)),
-                    TargetIntent(Targeting.Slot_SelfSlot, IntentType_GameIDs.Misc_Additional.ToString())
+                    TargetIntent(Targeting.Slot_Front, IntentForDamage(abilityCDamage)),
+                    TargetIntent(Targeting.Slot_SelfSlot, IntentType_GameIDs.Other_Refresh.ToString())
                 })
                 .AddToCharacterDatabase()
-                .CharacterAbility(Pigments.Red, Pigments.Red);
+                .CharacterAbility(Pigments.Red, Pigments.Red, Pigments.Blue);
 
                 return new(health, [abilityA, abilityB, abilityC]);
             });
