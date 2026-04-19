@@ -29,7 +29,7 @@ namespace BOSpecialFools.Characters
 
             ch.RankedDataSetup(4, (rank, abilityRank) =>
             {
-                var health = RankedValue(14, 16, 18, 20);
+                var health = RankedValue(14, 16, 17, 18);
 
                 var abATargeting = Targeting.Unit_AllOpponents.FilterUnit(x => x.SimpleGetStoredValue(trackSv._UnitStoreDataID) == CS.CurrentPlayerTurn());
                 var abilityADamage = RankedValue(6, 8, 10, 12);
