@@ -31,62 +31,62 @@ namespace BOSpecialFools.Characters
             {
                 var health = RankedValue(14, 16, 18, 20);
 
-                var ab1Targeting = Targeting.Unit_AllOpponents.FilterUnit(x => x.SimpleGetStoredValue(trackSv._UnitStoreDataID) == CS.CurrentPlayerTurn());
-                var ability1Damage = RankedValue(6, 8, 10, 12);
-                var ability1 = NewAbility($"Wreath1_{abilityRank}_A")
-                .SetBasicInformation("Ability 1", $"Deal {ability1Damage} damage to All enemies that received any damage this turn.")
-                .SetVisuals(Visuals.Parry, ab1Targeting)
+                var abATargeting = Targeting.Unit_AllOpponents.FilterUnit(x => x.SimpleGetStoredValue(trackSv._UnitStoreDataID) == CS.CurrentPlayerTurn());
+                var abilityADamage = RankedValue(6, 8, 10, 12);
+                var abilityA = NewAbility($"WreathA_{abilityRank}_A")
+                .SetBasicInformation($"Ability A {abilityRank}", $"Deal {abilityADamage} damage to All enemies that received any damage this turn.")
+                .SetVisuals(Visuals.Parry, abATargeting)
                 .SetEffects(new()
                 {
-                    Effects.GenerateEffect(CreateScriptable<DamageEffect>(), ability1Damage, ab1Targeting)
+                    Effects.GenerateEffect(CreateScriptable<DamageEffect>(), abilityADamage, abATargeting)
                 })
                 .SetIntents(new()
                 {
                     TargetIntent(Targeting.Unit_AllOpponents, IntentType_GameIDs.Misc_Hidden.ToString()),
-                    TargetIntent(ab1Targeting, IntentForDamage(ability1Damage))
+                    TargetIntent(abATargeting, IntentForDamage(abilityADamage))
                 })
                 .AddToCharacterDatabase()
                 .CharacterAbility(Pigments.Red, Pigments.Red, Pigments.Red);
 
-                var ability2DamageFullHealth = RankedValue(5, 6, 7, 8);
-                var ability2DamageNotFull = RankedValue(8, 11, 14, 16);
-                var ability2 = NewAbility($"Wreath2_{abilityRank}_A")
-                .SetBasicInformation("Ability 2", $"Deal {ability2DamageFullHealth} damage to the Opposing damage. If the enemy is not at full health, deal {ability2DamageNotFull} damage instead.")
+                var abilityBDamageFullHealth = RankedValue(5, 6, 7, 8);
+                var abilityBDamageNotFull = RankedValue(8, 11, 14, 16);
+                var abilityB = NewAbility($"WreathB_{abilityRank}_A")
+                .SetBasicInformation($"Ability B {abilityRank}", $"Deal {abilityBDamageFullHealth} damage to the Opposing damage. If the enemy is not at full health, deal {abilityBDamageNotFull} damage instead.")
                 .SetVisuals(Visuals.Burn, Targeting.Slot_Front)
                 .SetEffects(new()
                 {
-                    Effects.GenerateEffect(CreateScriptable<ExtraVariableForNextEffect>(), ability2DamageFullHealth),
-                    Effects.GenerateEffect(CreateScriptable<DamageByEntryOrPrevExitIfFullHealth>(), ability2DamageNotFull, Targeting.Slot_Front)
+                    Effects.GenerateEffect(CreateScriptable<ExtraVariableForNextEffect>(), abilityBDamageFullHealth),
+                    Effects.GenerateEffect(CreateScriptable<DamageByEntryOrPrevExitIfFullHealth>(), abilityBDamageNotFull, Targeting.Slot_Front)
                 })
-                .AddIntent(Targeting.Slot_Front, IntentType_GameIDs.Misc_Hidden.ToString(), IntentForDamage(ability2DamageFullHealth), IntentForDamage(ability2DamageNotFull))
+                .AddIntent(Targeting.Slot_Front, IntentType_GameIDs.Misc_Hidden.ToString(), IntentForDamage(abilityBDamageFullHealth), IntentForDamage(abilityBDamageNotFull))
                 .AddToCharacterDatabase()
                 .CharacterAbility(Pigments.Red, Pigments.Yellow);
 
-                var ability3Damage = RankedValue(6, 7, 9, 10);
-                var ab3Targeting = Targeting.Unit_AllOpponents.FilterByHealth(true, true);
-                var ab3PerformEffect = CreateScriptable<CasterPerformEffectsEffect>();
-                ab3PerformEffect.effects = new()
+                var abilityCDamage = RankedValue(6, 7, 9, 10);
+                var abCTargeting = Targeting.Unit_AllOpponents.FilterByHealth(true, true);
+                var abCPerformEffect = CreateScriptable<CasterPerformEffectsEffect>();
+                abCPerformEffect.effects = new()
                 {
                     Effects.GenerateEffect(CreateScriptable<PerformEffectsOnRandomTargetEffect>(x => x.effects = new()
                     {
                         Effects.GenerateEffect(CreateScriptable<AnimationVisualsOnEffectTargetsEffect>(x2 => x2.visuals = Visuals.Decimate)),
-                        Effects.GenerateEffect(CreateScriptable<DamageEffect>(x => x._returnKillAsSuccess = true), ability3Damage)
-                    }), 0, ab3Targeting),
-                    Effects.GenerateEffect(ab3PerformEffect, condition: Effects.CheckPreviousEffectCondition(true, 1))
+                        Effects.GenerateEffect(CreateScriptable<DamageEffect>(x => x._returnKillAsSuccess = true), abilityCDamage)
+                    }), 0, abCTargeting),
+                    Effects.GenerateEffect(abCPerformEffect, condition: Effects.CheckPreviousEffectCondition(true, 1))
                 };
-                var ability3 = NewAbility($"Wreath3_{abilityRank}_A")
-                .SetBasicInformation("Ability 3", $"Deal {ability3Damage} damage to a Random enemy with the lowest health. If this kills, repeat this ability.")
-                .SetEffects([Effects.GenerateEffect(ab3PerformEffect)])
+                var abilityC = NewAbility($"WreathC_{abilityRank}_A")
+                .SetBasicInformation($"Ability C {abilityRank}", $"Deal {abilityCDamage} damage to a Random enemy with the lowest health. If this kills, repeat this ability.")
+                .SetEffects([Effects.GenerateEffect(abCPerformEffect)])
                 .SetIntents(new()
                 {
                     TargetIntent(Targeting.Unit_AllOpponents, IntentType_GameIDs.Misc_Hidden.ToString()),
-                    TargetIntent(Targeting.Spec_Unit_AllOpponents_Weakest, IntentForDamage(ability3Damage)),
+                    TargetIntent(Targeting.Spec_Unit_AllOpponents_Weakest, IntentForDamage(abilityCDamage)),
                     TargetIntent(Targeting.Slot_SelfSlot, IntentType_GameIDs.Misc_Additional.ToString())
                 })
                 .AddToCharacterDatabase()
                 .CharacterAbility(Pigments.Red, Pigments.Red);
 
-                return new(health, [ability1, ability2, ability3]);
+                return new(health, [abilityA, abilityB, abilityC]);
             });
 
             ch.AddToDatabase();
