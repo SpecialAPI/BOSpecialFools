@@ -46,7 +46,7 @@ namespace BOSpecialFools.Characters
                     TargetIntent(abATargeting, IntentForDamage(abilityADamage))
                 })
                 .AddToCharacterDatabase()
-                .CharacterAbility(Pigments.Red, Pigments.Red, Pigments.Red);
+                .CharacterAbility(Pigments.Yellow, Pigments.Blue, Pigments.Red);
 
                 var abilityBDamageFullHealth = RankedValue(5, 6, 7, 8);
                 var abilityBDamageNotFull = RankedValue(8, 11, 14, 16);
