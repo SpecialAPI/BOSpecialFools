@@ -47,21 +47,16 @@ namespace BOSpecialFools.Characters
                 })
                 .CharacterAbility(Pigments.Yellow, Pigments.Blue, Pigments.Red);
 
-                var abilityBDamageFullHealth = RankedValue(5, 6, 7, 8);
-                var abilityBDamageNotFull = RankedValue(8, 11, 14, 16);
+                var abilityBMaxDamage = RankedValue(8, 12, 15, 18);
                 var abilityB = NewAbility($"WreathB_{abilityRank}_A")
-                .SetBasicInformationCharacter($"Ability B {abilityRank}", $"If the Opposing enemy is at full health, deal {abilityBDamageFullHealth} to them.\nOtherwise, deal {abilityBDamageNotFull} damage to the Opposing enemy and reduce their maximum health to their current health value.")
+                .SetBasicInformationCharacter($"Ability B {abilityRank}", $"Deal damage to the Opposing enemy equal to their missing health, up to a maximum of {abilityBMaxDamage}. If successful, reduce the Opposing enemy's maximum health to their current health.")
                 .SetVisuals(Visuals.Flay, Targeting.Slot_Front)
                 .SetEffects(new()
                 {
-                    Effects.GenerateEffect(CreateScriptable<CheckTargetsAtMaxHealthEffect>(), 0, Targeting.Slot_Front),
-
-                    Effects.GenerateEffect(CreateScriptable<DamageEffect>(), abilityBDamageFullHealth, Targeting.Slot_Front, Effects.CheckPreviousEffectCondition(true, 1)),
-
-                    Effects.GenerateEffect(CreateScriptable<DamageEffect>(), abilityBDamageNotFull, Targeting.Slot_Front, Effects.CheckPreviousEffectCondition(false, 2)),
-                    Effects.GenerateEffect(CreateScriptable<ChangeMaxHealthByCurrentHealthEffect>(), 0, Targeting.Slot_Front, Effects.CheckPreviousEffectCondition(false, 3)),
+                    Effects.GenerateEffect(CreateScriptable<DamageByMissingHealthUpToEntryEffect>(), abilityBMaxDamage, Targeting.Slot_Front),
+                    Effects.GenerateEffect(CreateScriptable<ChangeMaxHealthByCurrentHealthEffect>(), 0, Targeting.Slot_Front, Effects.CheckPreviousEffectCondition(true, 1)),
                 })
-                .AddIntent(Targeting.Slot_Front, IntentType_GameIDs.Misc_Hidden.ToString(), IntentForDamage(abilityBDamageFullHealth), IntentForDamage(abilityBDamageNotFull), IntentType_GameIDs.Other_MaxHealth.ToString())
+                .AddIntent(Targeting.Slot_Front, IntentForDamage(abilityBMaxDamage), IntentType_GameIDs.Other_MaxHealth.ToString())
                 .CharacterAbility(Pigments.Red, Pigments.Yellow);
 
                 var abilityCDamage = RankedValue(6, 7, 8, 9);
