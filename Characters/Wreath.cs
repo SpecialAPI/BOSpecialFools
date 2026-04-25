@@ -59,14 +59,17 @@ namespace BOSpecialFools.Characters
                 .AddIntent(Targeting.Slot_Front, IntentForDamage(abilityBMaxDamage), IntentType_GameIDs.Other_MaxHealth.ToString())
                 .CharacterAbility(Pigments.Red, Pigments.Yellow);
 
+                var abilityCThreshold = RankedValue(10, 14, 18, 22);
                 var abilityCDamage = RankedValue(6, 7, 8, 9);
                 var abilityC = NewAbility($"WreathC_{abilityRank}_A")
-                .SetBasicInformationCharacter($"Ability C {abilityRank}", $"Deal {abilityCDamage} damage to the Opposing enemy. If this kills, refresh this party member.")
-                .SetVisuals(Visuals.Decimate, Targeting.Slot_Front)
+                .SetBasicInformationCharacter($"Ability C {abilityRank}", $"If the Opposing enemy has {abilityCThreshold} or less health, apply Focused to this party member.\nDeal {abilityCDamage} damage to the Opposing enemy.")
+                .SetVisuals(Visuals.Writhe, Targeting.Slot_Front)
                 .SetEffects(new()
                 {
-                    Effects.GenerateEffect(CreateScriptable<DamageEffect>(x => x._returnKillAsSuccess = true), abilityCDamage, Targeting.Slot_Front),
-                    Effects.GenerateEffect(CreateScriptable<RefreshAbilityUseEffect>(), 0, Targeting.Slot_SelfSlot, Effects.CheckPreviousEffectCondition(true, 1))
+                    Effects.GenerateEffect(CreateScriptable<CheckTargetsHealthCompareToEntryEffect>(), abilityCThreshold, Targeting.Slot_Front),
+                    Effects.GenerateEffect(CreateScriptable<StatusEffect_Apply_Effect>(x => x._Status = StatusField.Focused), 0, Targeting.Slot_SelfSlot, Effects.CheckPreviousEffectCondition(true, 1)),
+
+                    Effects.GenerateEffect(CreateScriptable<DamageEffect>(), abilityCDamage, Targeting.Slot_Front),
                 })
                 .SetIntents(new()
                 {
