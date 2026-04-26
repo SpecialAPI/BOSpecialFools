@@ -73,8 +73,9 @@ namespace BOSpecialFools.Characters
                 })
                 .SetIntents(new()
                 {
+                    TargetIntent(Targeting.Slot_Front, IntentType_GameIDs.Misc_Hidden.ToString()),
+                    TargetIntent(Targeting.Slot_SelfSlot, IntentType_GameIDs.Status_Focused.ToString()),
                     TargetIntent(Targeting.Slot_Front, IntentForDamage(abilityCDamage)),
-                    TargetIntent(Targeting.Slot_SelfSlot, IntentType_GameIDs.Other_Refresh.ToString())
                 })
                 .CharacterAbility(Pigments.Red, Pigments.Red, Pigments.Blue);
 
