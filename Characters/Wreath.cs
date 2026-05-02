@@ -60,7 +60,7 @@ namespace BOSpecialFools.Characters
                 .CharacterAbility(Pigments.Red, Pigments.Yellow);
 
                 var abilityCThreshold = RankedValue(10, 14, 18, 22);
-                var abilityCDamage = RankedValue(6, 7, 8, 9);
+                var abilityCDamage = RankedValue(6, 7, 9, 11);
                 var abilityC = NewAbility($"WreathC_{abilityRank}_A")
                 .SetBasicInformationCharacter($"Ability C {abilityRank}", $"If the Opposing enemy has {abilityCThreshold} or less health, apply Focused to this party member.\nDeal {abilityCDamage} damage to the Opposing enemy.")
                 .SetVisuals(Visuals.Writhe, Targeting.Slot_Front)
