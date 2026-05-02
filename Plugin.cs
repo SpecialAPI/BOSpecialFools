@@ -1,9 +1,13 @@
 ﻿using BepInEx;
 using BOSpecialFools.Characters;
+using Grimoire;
 using System;
 
 namespace BOSpecialFools
 {
+    [BepInDependency(BrutalAPI.BrutalAPI.GUID)]
+    [BepInDependency(PentaclePlugin.MOD_GUID)]
+    [BepInDependency(GrimoirePlugin.MOD_GUID)]
     [BepInPlugin(MOD_GUID, MOD_NAME, MOD_VERSION)]
     public class Plugin : BaseUnityPlugin
     {
