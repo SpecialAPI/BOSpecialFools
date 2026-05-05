@@ -13,25 +13,11 @@ namespace BOSpecialFools.Characters
             var ch = NewCharacter("Wreath_CH", "Wreath")
                 .SetBasicInformation("Wreath", Pigments.Purple, "WreathFront", "WreathBack", "WreathOW");
 
-            var trackSv = NewStoredValue<UnitStoreData_BasicSO>("WreathLastDamageTurn_USD", "WreathLastDamageTurn");
-            var tracker = CreateScriptable<MultiCustomTriggerEffectHiddenPassiveEffect>();
-            tracker.triggerEffects = new()
-            {
-                new()
-                {
-                    trigger = LocalCustomTriggers.OnAnyoneDamaged,
-                    immediate = true,
-                    
-                    effect = new SetUnitHolderStoredValueToCurrentTurnTriggerEffect(trackSv._UnitStoreDataID, 1)
-                }
-            };
-            ch.AddHiddenEffects(tracker);
-
             ch.RankedDataSetup(4, (rank, abilityRank) =>
             {
                 var health = RankedValue(14, 16, 17, 18);
 
-                var abATargeting = Targeting.Unit_AllOpponents.FilterUnit(x => x.SimpleGetStoredValue(trackSv._UnitStoreDataID) == CS.CurrentPlayerTurn());
+                var abATargeting = Targeting.Unit_AllOpponents.FilterUnitByDamagedThisTurn(true);
                 var abilityADamage = RankedValue(6, 8, 10, 12);
                 var abilityA = NewAbility($"WreathA_{abilityRank}_A")
                 .SetBasicInformationCharacter($"Ability A {abilityRank}", $"Deal {abilityADamage} damage to All enemies that received any damage this turn.")
