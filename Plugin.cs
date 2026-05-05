@@ -16,16 +16,13 @@ namespace BOSpecialFools
         public const string MOD_VERSION = "0.0.1";
         public const string MOD_PREFIX = "157Fools";
 
-        public static Harmony HarmonyInstance;
+        public static readonly ModProfile Profile       = GenerateProfile();
+        public static readonly Harmony HarmonyInstance  = new(MOD_GUID);
 
         public void Awake()
         {
-            ProfileManager.RegisterMod(MOD_GUID, MOD_PREFIX);
-
-            HarmonyInstance = new Harmony(MOD_GUID);
             HarmonyInstance.PatchAll();
             
-
             //AStar.Init();
             //Charline.Init();
             Wreath.Init();
@@ -35,5 +32,7 @@ namespace BOSpecialFools
         {
             RankedAbilitiesDatabase.Init();
         }
+
+        private static ModProfile GenerateProfile() => ProfileManager.RegisterMod(MOD_GUID, MOD_PREFIX);
     }
 }
