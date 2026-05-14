@@ -45,24 +45,18 @@ namespace BOSpecialFools.Characters
                 .AddIntent(Targeting.Slot_Front, IntentForDamage(abilityBMaxDamage), IntentType_GameIDs.Other_MaxHealth.ToString())
                 .CharacterAbility(Pigments.Red, Pigments.Yellow);
 
-                var abilityCThreshold = RankedValue(10, 14, 18, 22);
-                var abilityCDamage = RankedValue(6, 7, 9, 11);
+                var abilityCDamage = RankedValue(4, 5, 6, 7);
                 var abilityC = NewAbility($"WreathC_{abilityRank}_A")
-                .SetBasicInformationCharacter($"Ability C {abilityRank}", $"If the Opposing enemy has {abilityCThreshold} or less health, apply Focused to this party member.\nDeal {abilityCDamage} damage to the Opposing enemy.")
+                .SetBasicInformationCharacter($"Ability C {abilityRank}", $"Deal {abilityCDamage} damage to the Opposing enemy. If the Opposing enemy was already damaged this turn, inflict 1 Frail to it.")
                 .SetVisuals(Visuals.Writhe, Targeting.Slot_Front)
                 .SetEffects(new()
                 {
-                    Effects.GenerateEffect(CreateScriptable<CheckTargetsHealthCompareToEntryEffect>(), abilityCThreshold, Targeting.Slot_Front),
-                    Effects.GenerateEffect(CreateScriptable<StatusEffect_Apply_Effect>(x => x._Status = StatusField.Focused), 0, Targeting.Slot_SelfSlot, Effects.CheckPreviousEffectCondition(true, 1)),
+                    Effects.GenerateEffect(CreateScriptable<CheckTargetsDamagedThisTurn>(), 0, Targeting.Slot_Front),
 
                     Effects.GenerateEffect(CreateScriptable<DamageEffect>(), abilityCDamage, Targeting.Slot_Front),
+                    Effects.GenerateEffect(CreateScriptable<StatusEffect_Apply_Effect>(x => x._Status = StatusField.Frail), 1, Targeting.Slot_Front, Effects.CheckPreviousEffectCondition(true, 2))
                 })
-                .SetIntents(new()
-                {
-                    TargetIntent(Targeting.Slot_Front, IntentType_GameIDs.Misc_Hidden.ToString()),
-                    TargetIntent(Targeting.Slot_SelfSlot, IntentType_GameIDs.Status_Focused.ToString()),
-                    TargetIntent(Targeting.Slot_Front, IntentForDamage(abilityCDamage)),
-                })
+                .AddIntent(Targeting.Slot_Front, IntentForDamage(abilityCDamage), IntentType_GameIDs.Status_Frail.ToString(), IntentType_GameIDs.Misc_Hidden.ToString())
                 .CharacterAbility(Pigments.Red, Pigments.Red, Pigments.Blue);
 
                 return new(health, [abilityA, abilityB, abilityC]);
