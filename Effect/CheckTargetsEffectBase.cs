@@ -22,18 +22,21 @@ namespace BOSpecialFools.Effect
 
                 var u = t.Unit;
 
-                if(CheckUnit(u, stats, caster, areTargetSlots, entryVariable, ref exitAmount))
+                if (CheckUnit(u, stats, caster, areTargetSlots, entryVariable))
+                {
                     anySuccessful = true;
+                    exitAmount++;
+                }
                 else
                     anyFail = true;
             }
 
-            if(allTargetsSuccessful && anyFail)
-                return false;
-
-            return anySuccessful;
+            if (allTargetsSuccessful)
+                return anySuccessful && !anyFail;
+            else
+                return anySuccessful;
         }
 
-        public abstract bool CheckUnit(IUnit target, CombatStats stats, IUnit caster, bool areTagetSlots, int entryVariable, ref int exitAmount);
+        public abstract bool CheckUnit(IUnit target, CombatStats stats, IUnit caster, bool areTagetSlots, int entryVariable);
     }
 }

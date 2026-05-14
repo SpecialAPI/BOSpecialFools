@@ -8,13 +8,9 @@ namespace BOSpecialFools.Effect
     {
         public IntComparison comparison = IntComparison.LessThanOrEqual;
 
-        public override bool CheckUnit(IUnit target, CombatStats stats, IUnit caster, bool areTagetSlots, int entryVariable, ref int exitAmount)
+        public override bool CheckUnit(IUnit target, CombatStats stats, IUnit caster, bool areTagetSlots, int entryVariable)
         {
-            if (!CompareInts(target.CurrentHealth, entryVariable, comparison))
-                return false;
-
-            exitAmount++;
-            return true;
+            return CompareInts(target.CurrentHealth, entryVariable, comparison);
         }
     }
 }

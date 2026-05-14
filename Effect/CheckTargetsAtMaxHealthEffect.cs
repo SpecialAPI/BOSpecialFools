@@ -6,13 +6,9 @@ namespace BOSpecialFools.Effect
 {
     public class CheckTargetsAtMaxHealthEffect : CheckTargetsEffectBase
     {
-        public override bool CheckUnit(IUnit target, CombatStats stats, IUnit caster, bool areTagetSlots, int entryVariable, ref int exitAmount)
+        public override bool CheckUnit(IUnit target, CombatStats stats, IUnit caster, bool areTagetSlots, int entryVariable)
         {
-            if(target.CurrentHealth < target.MaximumHealth)
-                return false;
-
-            exitAmount += 1;
-            return true;
+            return target.CurrentHealth >= target.MaximumHealth;
         }
     }
 }
