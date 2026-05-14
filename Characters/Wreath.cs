@@ -24,7 +24,7 @@ namespace BOSpecialFools.Characters
                 .SetVisuals(Visuals.Clobber_Left, abATargeting)
                 .SetEffects(new()
                 {
-                    Effects.GenerateEffect(CreateScriptable<DamageEffect>(), abilityADamage, abATargeting)
+                    Effects.GenerateEffect(CommonEffects.Damage, abilityADamage, abATargeting)
                 })
                 .SetIntents(new()
                 {
@@ -53,8 +53,8 @@ namespace BOSpecialFools.Characters
                 {
                     Effects.GenerateEffect(CreateScriptable<CheckTargetsDamagedThisTurn>(), 0, Targeting.Slot_Front),
 
-                    Effects.GenerateEffect(CreateScriptable<DamageEffect>(), abilityCDamage, Targeting.Slot_Front),
-                    Effects.GenerateEffect(CreateScriptable<StatusEffect_Apply_Effect>(x => x._Status = StatusField.Frail), 1, Targeting.Slot_Front, Effects.CheckPreviousEffectCondition(true, 2))
+                    Effects.GenerateEffect(CommonEffects.Damage, abilityCDamage, Targeting.Slot_Front),
+                    Effects.GenerateEffect(CommonEffects.ApplyFrail, 1, Targeting.Slot_Front, Effects.CheckPreviousEffectCondition(true, 2))
                 })
                 .AddIntent(Targeting.Slot_Front, IntentForDamage(abilityCDamage), IntentType_GameIDs.Status_Frail.ToString(), IntentType_GameIDs.Misc_Hidden.ToString())
                 .CharacterAbility(Pigments.Red, Pigments.Red, Pigments.Blue);
