@@ -10,11 +10,7 @@ namespace BOSpecialFools.Targets
 
         protected override bool FilterUnit(IUnit unit, SlotsCombat slots, int casterSlotID, bool isCasterCharacter)
         {
-            var history = unit.DamageHistory();
-            var currentTurn = CS.CurrentPlayerTurn();
-
-            var damaged = history.Count > 0 && history[history.Count - 1].turn == currentTurn;
-            return damaged == needsToBeDamaged;
+            return unit.DamagedThisTurn() == needsToBeDamaged;
         }
     }
 }
