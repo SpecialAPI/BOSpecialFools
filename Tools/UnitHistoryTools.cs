@@ -12,9 +12,28 @@ namespace BOSpecialFools.Tools
     {
         private static readonly UnitStoreData_BasicSO StoreData = NewStoredValue<UnitStoreData_BasicSO>("UnitHistoryStorage_USD", "UnitHistoryStorage", Profile);
 
-        public static IReadOnlyList<DamageInstance> DamageHistory(this IUnit u) => u.GetHistoryStorage().damageHistory;
+        public static int LastDamagedTurn(this IUnit u)
+        {
+            var history = u.DamageHistory();
 
-        public static IReadOnlyList<HealingInstance> HealingHistory(this IUnit u) => u.GetHistoryStorage().healingHistory;
+            if (history == null || history.Count == 0)
+                return -1;
+
+            return history[history.Count - 1].turn;
+        }
+
+        public static bool DamagedThisTurn(this IUnit u)
+        {
+            var lastDamagedTurn = u.LastDamagedTurn();
+            if(lastDamagedTurn < 0)
+                return false;
+
+            return lastDamagedTurn == CS.CurrentPlayerTurn();
+        }
+
+        public static IReadOnlyList<DamageInstance> DamageHistory(this IUnit u) => u.GetHistoryStorage()?.damageHistory;
+
+        public static IReadOnlyList<HealingInstance> HealingHistory(this IUnit u) => u.GetHistoryStorage()?.healingHistory;
 
         private static UnitHistoryStorage GetHistoryStorage(this IUnit u)
         {
