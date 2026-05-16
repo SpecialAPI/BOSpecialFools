@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ModInfo\**" />
+    <EmbeddedResource Remove="ModInfo\**" />
+    <None Remove="ModInfo\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Resources\WreathBack.png" />
     <None Remove="Resources\WreathFront.png" />
     <None Remove="Resources\WreathLocked.png" />
