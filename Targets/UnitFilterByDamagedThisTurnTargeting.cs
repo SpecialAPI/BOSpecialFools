@@ -8,7 +8,7 @@ namespace BOSpecialFools.Targets
     {
         public bool needsToBeDamaged;
 
-        protected override bool FilterUnit(IUnit unit, SlotsCombat slots, int casterSlotID, bool isCasterCharacter)
+        protected override bool FilterUnit(IUnit unit, TargetSlotInfo target, SlotsCombat slots, int casterSlotID, bool isCasterCharacter)
         {
             return unit.DamagedThisTurn() == needsToBeDamaged;
         }

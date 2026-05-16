@@ -21,13 +21,13 @@ namespace BOSpecialFools.Targets
                 if (!t.HasUnit)
                     continue;
 
-                if(FilterUnit(t.Unit, slots, casterSlotID, isCasterCharacter))
+                if(FilterUnit(t.Unit, t, slots, casterSlotID, isCasterCharacter))
                     newTargets.Add(t);
             }
 
             return [..newTargets];
         }
 
-        protected abstract bool FilterUnit(IUnit unit, SlotsCombat slots, int casterSlotID, bool isCasterCharacter);
+        protected abstract bool FilterUnit(IUnit unit, TargetSlotInfo target, SlotsCombat slots, int casterSlotID, bool isCasterCharacter);
     }
 }

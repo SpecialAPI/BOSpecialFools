@@ -8,6 +8,6 @@ namespace BOSpecialFools.Targets
     {
         public Func<IUnit, SlotsCombat, int, bool, bool> filter;
 
-        protected override bool FilterUnit(IUnit unit, SlotsCombat slots, int casterSlotID, bool isCasterCharacter) => filter(unit, slots, casterSlotID, isCasterCharacter);
+        protected override bool FilterUnit(IUnit unit, TargetSlotInfo target, SlotsCombat slots, int casterSlotID, bool isCasterCharacter) => filter(unit, slots, casterSlotID, isCasterCharacter);
     }
 }
