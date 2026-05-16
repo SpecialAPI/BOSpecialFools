@@ -62,5 +62,14 @@ namespace BOSpecialFools.Tools
 
             return f;
         }
+
+        public static BaseCombatTargettingSO MinMaxByPosition(this BaseCombatTargettingSO orig, bool getRightmost)
+        {
+            var m = CreateScriptable<UnitMinMaxByPositionTargeting>();
+            m.orig = orig;
+            m.isMax = getRightmost;
+
+            return m;
+        }
     }
 }
