@@ -33,6 +33,6 @@ namespace BOSpecialFools
             RankedAbilitiesDatabase.Init();
         }
 
-        private static ModProfile GenerateProfile() => ProfileManager.RegisterMod(MOD_GUID, MOD_PREFIX);
+        private static ModProfile GenerateProfile() => ProfileManager.RegisterMod(MOD_GUID, string.Empty);
     }
 }

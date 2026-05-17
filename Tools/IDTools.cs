@@ -18,7 +18,7 @@ namespace BOSpecialFools.Tools
 
         public static string Prefix(this string id)
         {
-            return Profile.GetID(id);
+            return $"{MOD_GUID}_{id}";
         }
 
         public static string[] Prefix(this string[] ids)
@@ -26,7 +26,7 @@ namespace BOSpecialFools.Tools
             var output = new string[ids.Length];
 
             for(var i = 0; i < ids.Length; i++)
-                output[i] = Profile.GetID(ids[i]);
+                output[i] = ids[i].Prefix();
 
             return output;
         }

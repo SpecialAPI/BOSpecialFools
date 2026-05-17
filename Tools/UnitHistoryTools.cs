@@ -10,7 +10,9 @@ namespace BOSpecialFools.Tools
     [HarmonyPatch]
     public static class UnitHistoryTools
     {
-        private static readonly UnitStoreData_BasicSO StoreData = NewStoredValue<UnitStoreData_BasicSO>("UnitHistoryStorage_USD", "UnitHistoryStorage", Profile);
+        private static readonly string StoreDataDB = "UnitHistoryStorage_USD".Prefix();
+        private static readonly string StoreDataID = "UnitHistoryStorage".Prefix();
+        private static readonly UnitStoreData_BasicSO StoreData = NewStoredValue<UnitStoreData_BasicSO>(StoreDataDB, StoreDataID, Profile);
 
         public static int LastDamagedTurn(this IUnit u)
         {
