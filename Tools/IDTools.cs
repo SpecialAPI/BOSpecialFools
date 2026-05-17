@@ -18,7 +18,7 @@ namespace BOSpecialFools.Tools
 
         public static string Prefix(this string id)
         {
-            return $"{MOD_GUID}_{id}";
+            return $"{MOD_PREFIX}_{id}";
         }
 
         public static string[] Prefix(this string[] ids)
