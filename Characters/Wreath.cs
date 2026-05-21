@@ -40,7 +40,7 @@ namespace BOSpecialFools.Characters
                 .SetVisuals(Visuals.Flay, Targeting.Slot_Front)
                 .SetEffects(new()
                 {
-                    Effects.GenerateEffect(CreateScriptable<DamageByMissingHealthUpToEntryEffect>(), abilityBMaxDamage, Targeting.Slot_Front),
+                    Effects.GenerateEffect(DamageByMissingHealthUpToEntryEffect.Create(), abilityBMaxDamage, Targeting.Slot_Front),
                     Effects.GenerateEffect(CreateScriptable<ChangeMaxHealthByCurrentHealthEffect>(), 0, Targeting.Slot_Front, Effects.CheckPreviousEffectCondition(true, 1)),
                 })
                 .AddIntent(Targeting.Slot_Front, IntentForDamage(abilityBMaxDamage), IntentType_GameIDs.Other_MaxHealth.ToString())

@@ -4,46 +4,18 @@ using System.Text;
 
 namespace BOSpecialFools.Effect
 {
-    public class DamageByMissingHealthUpToEntryEffect : DamageEffect
+    public class DamageByMissingHealthUpToEntryEffect : CustomDamageEffectBase
     {
-        public override bool PerformEffect(CombatStats stats, IUnit caster, TargetSlotInfo[] targets, bool areTargetSlots, int entryVariable, out int exitAmount)
+        public override int BaseDamageAmount(IUnit unit, TargetSlotInfo target, CombatStats stats, IUnit caster, bool areTargetSlots, int entryVariable, bool indirect)
         {
-            if (_usePreviousExitValue)
-                entryVariable *= PreviousExitValue;
+            return Mathf.Clamp(unit.MaximumHealth - unit.CurrentHealth, 0, entryVariable);
+        }
 
-            exitAmount = 0;
-            var killed = false;
+        public static EffectSO Create(bool indirect = false, bool usePreviousExit = false, bool successOnKill = false, bool ignoreShield = false, string deathType = nameof(DeathType_GameIDs.Basic), string specialDamage = "")
+        {
+            var e = Create<DamageByMissingHealthUpToEntryEffect>(indirect, usePreviousExit, successOnKill, ignoreShield, deathType, specialDamage);
 
-            foreach(var t in targets)
-            {
-                if(!t.HasUnit)
-                    continue;
-
-                var u = t.Unit;
-                var offs = t.TargetOffset(areTargetSlots);
-                var amt = Mathf.Clamp(u.MaximumHealth - u.CurrentHealth, 0, entryVariable);
-
-                DamageInfo dmgInfo;
-
-                if (!_indirect)
-                {
-                    amt = caster.WillApplyDamage(amt, u);
-                    dmgInfo = u.Damage(amt, caster, _DeathTypeID, offs, true, true, _ignoreShield);
-                }
-                else
-                    dmgInfo = u.Damage(amt, null, _DeathTypeID, offs, false, false, true);
-
-                exitAmount += dmgInfo.damageAmount;
-                killed |= dmgInfo.beenKilled;
-            }
-
-            if (!_indirect && exitAmount > 0)
-                caster.DidApplyDamage(exitAmount);
-
-            if (_returnKillAsSuccess)
-                return killed;
-            else
-                return exitAmount > 0;
+            return e;
         }
     }
 }
