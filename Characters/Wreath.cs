@@ -56,7 +56,6 @@ namespace BOSpecialFools.Characters
                 .SetEffects(
                 [
                     Effects.GenerateEffect(CreateScriptable<CheckTargetsDamagedThisTurn>(), 0, Targeting.Slot_Front),
-
                     Effects.GenerateEffect(CommonEffects.Damage, abilityCDamage, Targeting.Slot_Front),
 
                     ..abilityCTargetRightIfNoLeft ?
