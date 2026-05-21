@@ -53,17 +53,25 @@ namespace BOSpecialFools.Characters
                     " If there is no Left enemy, apply the Frail to the Right enemy instead." :
                     ""))
                 .SetVisuals(Visuals.Writhe, Targeting.Slot_Front)
-                .SetEffects(new()
-                {
+                .SetEffects(
+                [
                     Effects.GenerateEffect(CreateScriptable<CheckTargetsDamagedThisTurn>(), 0, Targeting.Slot_Front),
 
                     Effects.GenerateEffect(CommonEffects.Damage, abilityCDamage, Targeting.Slot_Front),
-                    Effects.GenerateEffect(CommonEffects.ApplyFrail, 1, 
-                        abilityCTargetRightIfNoLeft ?
-                            Targeting.Slot_OpponentSides.MinMaxByPosition(false) :
-                            Targeting.Slot_OpponentLeft,
-                        Effects.CheckPreviousEffectCondition(true, 2))
-                })
+
+                    ..abilityCTargetRightIfNoLeft ?
+                    new List<EffectInfo>()
+                    {
+                        Effects.GenerateEffect(CommonEffects.UnitCheck, 0, Targeting.Slot_OpponentLeft),
+
+                        Effects.GenerateEffect(CommonEffects.ApplyFrail, 1, Targeting.Slot_OpponentLeft, Effects.CheckMultiplePreviousEffectsCondition([true, true], [3, 1])),
+                        Effects.GenerateEffect(CommonEffects.ApplyFrail, 1, Targeting.Slot_OpponentRight, Effects.CheckMultiplePreviousEffectsCondition([true, false], [4, 2])),
+                    } :
+                    new List<EffectInfo>()
+                    {
+                        Effects.GenerateEffect(CommonEffects.ApplyFrail, 1, Targeting.Slot_OpponentLeft, Effects.CheckPreviousEffectCondition(true, 2)),
+                    }
+                ])
                 .SetIntents(new()
                 {
                     TargetIntent(Targeting.Slot_Front, IntentForDamage(abilityCDamage)),
