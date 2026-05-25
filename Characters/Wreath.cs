@@ -12,6 +12,7 @@ namespace BOSpecialFools.Characters
         {
             var ch = NewCharacter(IDs.WreathDB, IDs.WreathEntity)
                 .SetBasicInformation("Wreath", Pigments.Purple, "WreathFront", "WreathBack", "WreathOW")
+                .AddPassives(Passives.Withering)
                 .AddUnitTypes(UnitTypes.FemaleLooking, UnitTypes.FemaleID, UnitTypes.Sandwich_Gore);
 
             ch.RankedDataSetup(4, (rank, abilityRank) =>
