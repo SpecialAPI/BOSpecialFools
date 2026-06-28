@@ -33,6 +33,16 @@ namespace BOSpecialFools.Tools
             return lastDamagedTurn == CS.CurrentPlayerTurn();
         }
 
+        public static int LastDamage(this IUnit u)
+        {
+            var history = u.DamageHistory();
+
+            if (history == null || history.Count == 0)
+                return 0;
+
+            return history[history.Count - 1].damageAmount;
+        }
+
         public static IReadOnlyList<DamageInstance> DamageHistory(this IUnit u) => u.GetHistoryStorage()?.damageHistory;
 
         public static IReadOnlyList<HealingInstance> HealingHistory(this IUnit u) => u.GetHistoryStorage()?.healingHistory;
