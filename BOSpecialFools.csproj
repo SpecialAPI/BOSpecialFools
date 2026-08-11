@@ -14,6 +14,8 @@
 
   <ItemGroup>
     <None Remove="Resources\Items\Item19.png" />
+    <None Remove="Resources\Items\OldBleach.png" />
+    <None Remove="Resources\Items\TrueZeal.png" />
     <None Remove="Resources\WreathBack.png" />
     <None Remove="Resources\WreathFront.png" />
     <None Remove="Resources\WreathLocked.png" />
@@ -28,6 +30,8 @@
     <EmbeddedResource Include="Resources\Characters\Wreath\WreathOW.png" />
     <EmbeddedResource Include="Resources\Characters\Wreath\WreathUnlocked.png" />
     <EmbeddedResource Include="Resources\Items\Item19.png" />
+    <EmbeddedResource Include="Resources\Items\OldBleach.png" />
+    <EmbeddedResource Include="Resources\Items\TrueZeal.png" />
   </ItemGroup>
 
   <ItemGroup>
