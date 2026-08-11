@@ -30,6 +30,7 @@ namespace BOSpecialFools
             // Items
             OldBleach.Init();
             TrueZeal.Init();
+            Item19.Init();
         }
 
         public void Start()
