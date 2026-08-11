@@ -69,7 +69,7 @@ namespace BOSpecialFools.Effect
             if(direct > 0)
                 caster.DidApplyDamage(direct);
 
-            return exitAmount > 0;
+            return IsSuccessful(stats, caster, targets, areTargetSlots, entryVariable, exitAmount, killed, direct, indirect);
         }
 
         public virtual void ModifyEntryParameters(ref TargetSlotInfo[] targets, ref bool areTargetSlots, ref int entryVariable)
