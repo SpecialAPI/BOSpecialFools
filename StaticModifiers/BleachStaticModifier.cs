@@ -13,7 +13,7 @@ namespace BOSpecialFools.StaticModifiers
         [HarmonyPrefix]
         public static bool MaybeDontAddPassives(CharacterCombat __instance)
         {
-            return __instance.CharacterWearableModifiers == null || !__instance.CharacterWearableModifiers.TryGetModdedDataSetter("BleachStaticModifier", out var mod) || mod is not BleachStaticModifier;
+            return __instance.CharacterWearableModifiers == null || !__instance.CharacterWearableModifiers.TryGetModdedDataSetter(ID, out var mod) || mod is not BleachStaticModifier;
         }
 
         [HarmonyPatch(typeof(CharacterCombat), nameof(CharacterCombat.TrySetUpNewItem))]
@@ -40,16 +40,16 @@ namespace BOSpecialFools.StaticModifiers
 
         public static void HandleFlagsChange_RecoverPassives(CharacterCombat cc)
         {
-            if (cc.CharacterWearableModifiers == null || !cc.CharacterWearableModifiers.TryGetModdedDataSetter("BleachStaticModifier", out var mod) || mod is not BleachStaticModifier)
+            if (cc.CharacterWearableModifiers == null || !cc.CharacterWearableModifiers.TryGetModdedDataSetter(ID, out var mod) || mod is not BleachStaticModifier)
                 return;
 
-            cc.CharacterWearableModifiers.RemoveModdedData("BleachStaticModifier");
+            cc.CharacterWearableModifiers.RemoveModdedData(ID);
             cc.DefaultPassiveAbilityInitialization();
         }
 
         public static void HandleFlagsChange_DisconnectPassives(CharacterCombat cc)
         {
-            if (cc.CharacterWearableModifiers == null || !cc.CharacterWearableModifiers.TryGetModdedDataSetter("BleachStaticModifier", out var mod) || mod is not BleachStaticModifier)
+            if (cc.CharacterWearableModifiers == null || !cc.CharacterWearableModifiers.TryGetModdedDataSetter(ID, out var mod) || mod is not BleachStaticModifier)
                 return;
 
             cc.RemoveAndDisconnectAllPassiveAbilities();

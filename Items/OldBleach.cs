@@ -17,7 +17,7 @@ namespace BOSpecialFools.Items
 
             NewItem<BasicWearable>(ID)
                 .SetBasicInformation(name, flav, desc, "OldBleach")
-                .SetStaticModifiers(ModdedDataModifier(new BleachStaticModifier(), BleachStaticModifier.ID))
+                .SetStaticModifiers(ModdedDataModifier<BleachStaticModifier>(BleachStaticModifier.ID))
                 .SetPrice(0)
                 .AddWithoutItemPools()
                 .AddItemTypes(ItemType_GameIDs.Magic.ToString());
