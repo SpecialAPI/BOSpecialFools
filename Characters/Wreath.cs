@@ -8,9 +8,15 @@ namespace BOSpecialFools.Characters
 {
     public static class Wreath
     {
+        public static readonly string ID = "Wreath_CH".Prefix();
+        public static readonly string EntityID = "Wreath".Prefix();
+        public static readonly string[] AbilityAIDs = "WreathA_{0}_A".Prefix().GenerateLevels();
+        public static readonly string[] AbilityBIDs = "WreathB_{0}_A".Prefix().GenerateLevels();
+        public static readonly string[] AbilityCIDs = "WreathC_{0}_A".Prefix().GenerateLevels();
+
         public static void Init()
         {
-            var ch = NewCharacter(IDs.WreathDB, IDs.WreathEntity)
+            var ch = NewCharacter(ID, EntityID)
                 .SetBasicInformation("Wreath", Pigments.Purple, "WreathFront", "WreathBack", "WreathOW")
                 .AddPassives(Passives.Withering)
                 .AddUnitTypes(UnitTypes.FemaleLooking, UnitTypes.FemaleID, UnitTypes.Sandwich_Gore);
@@ -21,7 +27,7 @@ namespace BOSpecialFools.Characters
 
                 var abATargeting = Targeting.Unit_AllOpponents.FilterUnitByDamagedThisTurn(true);
                 var abilityADamage = RankedValue(6, 8, 10, 12);
-                var abilityA = NewRankedAbility(IDs.WreathAbilityA)
+                var abilityA = NewRankedAbility(AbilityAIDs)
                 .SetBasicInformationCharacter($"Ability A {abilityRank}", $"Deal {abilityADamage} damage to All enemies that received any damage this turn.")
                 .SetVisuals(Visuals.Clobber_Left, abATargeting)
                 .SetEffects(new()
@@ -36,7 +42,7 @@ namespace BOSpecialFools.Characters
                 .CharacterAbility(Pigments.Yellow, Pigments.Blue, Pigments.Red);
 
                 var abilityBMaxDamage = RankedValue(8, 12, 15, 18);
-                var abilityB = NewRankedAbility(IDs.WreathAbilityB)
+                var abilityB = NewRankedAbility(AbilityBIDs)
                 .SetBasicInformationCharacter($"Ability B {abilityRank}", $"Deal damage to the Opposing enemy equal to their missing health, up to a maximum of {abilityBMaxDamage}. If successful, reduce the Opposing enemy's maximum health to their current health.")
                 .SetVisuals(Visuals.Flay, Targeting.Slot_Front)
                 .SetEffects(new()
@@ -49,7 +55,7 @@ namespace BOSpecialFools.Characters
 
                 var abilityCDamage = RankedValue(5, 6, 7, 9);
                 var abilityCTargetRightIfNoLeft = RankedValue(false, false, true, true);
-                var abilityC = NewRankedAbility(IDs.WreathAbilityC)
+                var abilityC = NewRankedAbility(AbilityCIDs)
                 .SetBasicInformationCharacter($"Ability C {abilityRank}", $"Deal {abilityCDamage} damage to the Opposing enemy. If the Opposing enemy was already damaged this turn, inflict 1 Frail to the Left enemy." + (abilityCTargetRightIfNoLeft ?
                     " If there is no Left enemy, apply the Frail to the Right enemy instead." :
                     ""))
