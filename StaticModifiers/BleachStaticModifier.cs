@@ -11,7 +11,7 @@ namespace BOSpecialFools.StaticModifiers
 
         [HarmonyPatch(typeof(CharacterCombat), nameof(CharacterCombat.DefaultPassiveAbilityInitialization))]
         [HarmonyPrefix]
-        public static bool MaybeDontAddPassives(CharacterCombat __instance)
+        public static bool PreventDefaultPassiveInitialization_Prefix(CharacterCombat __instance)
         {
             return __instance.CharacterWearableModifiers == null || !__instance.CharacterWearableModifiers.TryGetModdedDataSetter(ID, out var mod) || mod is not BleachStaticModifier;
         }
@@ -53,6 +53,19 @@ namespace BOSpecialFools.StaticModifiers
                 return;
 
             cc.RemoveAndDisconnectAllPassiveAbilities();
+        }
+
+        [HarmonyPatch(typeof(CharacterInGameData), nameof(CharacterInGameData.UpdateCurrentPassives))]
+        [HarmonyPostfix]
+        public static void RemoveOverworldDisplayedPassives_Postfix(CharacterInGameData __instance)
+        {
+            if (__instance.WearableModifiers == null)
+                return;
+
+            if(!__instance.WearableModifiers.TryGetModdedDataSetter(ID, out var mod) || mod is not BleachStaticModifier)
+                return;
+
+            __instance.CurrentPassives.Clear();
         }
     }
 }
