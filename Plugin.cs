@@ -1,5 +1,6 @@
 ﻿using BepInEx;
 using BOSpecialFools.Characters;
+using BOSpecialFools.Items;
 using Grimoire;
 using System;
 
@@ -23,9 +24,12 @@ namespace BOSpecialFools
         {
             HarmonyInstance.PatchAll();
             
-            //AStar.Init();
-            //Charline.Init();
+            // Characters
             Wreath.Init();
+
+            // Items
+            OldBleach.Init();
+            TrueZeal.Init();
         }
 
         public void Start()

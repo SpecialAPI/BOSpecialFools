@@ -63,6 +63,15 @@ namespace BOSpecialFools.Tools
             return f;
         }
 
+        public static BaseCombatTargettingSO FilterUnitByEntityID(this BaseCombatTargettingSO orig, params string[] validIDs)
+        {
+            var f = CreateScriptable<UnitFilterByEntityIDTargeting>();
+            f.orig = orig;
+            f.validIDs = validIDs;
+
+            return f;
+        }
+
         public static BaseCombatTargettingSO MinMaxByPosition(this BaseCombatTargettingSO orig, bool getRightmost)
         {
             var m = CreateScriptable<UnitMinMaxByPositionTargeting>();

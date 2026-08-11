@@ -21,11 +21,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Resources\WreathBack.png" />
-    <EmbeddedResource Include="Resources\WreathFront.png" />
-    <EmbeddedResource Include="Resources\WreathLocked.png" />
-    <EmbeddedResource Include="Resources\WreathOW.png" />
-    <EmbeddedResource Include="Resources\WreathUnlocked.png" />
+    <EmbeddedResource Include="Resources\Characters\Wreath\WreathBack.png" />
+    <EmbeddedResource Include="Resources\Characters\Wreath\WreathFront.png" />
+    <EmbeddedResource Include="Resources\Characters\Wreath\WreathLocked.png" />
+    <EmbeddedResource Include="Resources\Characters\Wreath\WreathOW.png" />
+    <EmbeddedResource Include="Resources\Characters\Wreath\WreathUnlocked.png" />
   </ItemGroup>
 
   <ItemGroup>
