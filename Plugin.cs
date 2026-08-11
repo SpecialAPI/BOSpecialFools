@@ -31,6 +31,7 @@ namespace BOSpecialFools
             OldBleach.Init();
             TrueZeal.Init();
             Item19.Init();
+            KillingMachine.Init();
         }
 
         public void Start()
