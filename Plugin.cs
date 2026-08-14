@@ -18,6 +18,7 @@ namespace BOSpecialFools
         public const string MOD_PREFIX      = "157Fools";
 
         public static readonly ModProfile Profile       = GenerateProfile();
+        public static readonly AssetBundle Bundle       = Profile.AssetBundle;
         public static readonly Harmony HarmonyInstance  = new(MOD_GUID);
 
         public void Awake()
@@ -32,6 +33,8 @@ namespace BOSpecialFools
             TrueZeal.Init();
             Item19.Init();
             KillingMachine.Init();
+
+            FreeFoolEvents.Init();
         }
 
         public void Start()
@@ -39,6 +42,12 @@ namespace BOSpecialFools
             RankedAbilitiesDatabase.Init();
         }
 
-        private static ModProfile GenerateProfile() => ProfileManager.RegisterMod(MOD_GUID, string.Empty);
+        private static ModProfile GenerateProfile()
+        {
+            var prof = ProfileManager.RegisterMod(MOD_GUID, string.Empty);
+            prof.LoadAssetBundle("157fools");
+
+            return prof;
+        }
     }
 }

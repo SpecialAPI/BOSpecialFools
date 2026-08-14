@@ -58,6 +58,15 @@
     <Reference Include="Pentacle">
       <HintPath>..\Pentacle\bin\Debug\netstandard2.0\Pentacle.dll</HintPath>
     </Reference>
+    <Reference Include="YarnSpinner">
+      <HintPath>..\References\Unity\YarnSpinner.dll</HintPath>
+    </Reference>
+    <Reference Include="YarnSpinner.Compiler">
+      <HintPath>..\References\Unity\YarnSpinner.Compiler.dll</HintPath>
+    </Reference>
+    <Reference Include="YarnSpinner.Unity">
+      <HintPath>..\References\Unity\YarnSpinner.Unity.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>
