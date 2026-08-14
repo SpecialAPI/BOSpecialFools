@@ -9,7 +9,7 @@ namespace BOSpecialFools
         private static readonly string RoomNameFormat       = "157Fools_FreeFool_{0}_ER";
         private static readonly string DialogueFileFormat   = "{0}Dialogue";
         private static readonly string DialogueNameFormat   = "FreeFool_{0}_Dialogue".Prefix();
-        private static readonly string DialogueStartFormat  = "157Fools_{0}_FreeFool";
+        private static readonly string DialogueStartFormat  = "157Fools_{0}Dialogue_FreeFool";
         private static readonly string SpeakerIDFormat      = "{0}_SpeakerData".Prefix();
         private static readonly string EventIDFormat        = "{0}_FreeFoolEncounter".Prefix();
 
@@ -38,8 +38,9 @@ namespace BOSpecialFools
             // Dialogue
             var dialogueFile = string.Format(DialogueFileFormat, characterName);
             var dialogueName = string.Format(DialogueNameFormat, characterName);
+            var dialogueStart = string.Format(DialogueStartFormat, characterName);
             var program = Bundle.LoadAsset<YarnProgram>(dialogueFile);
-            var dialogue = Dialogues.CreateAndAddCustom_DialogueSO(dialogueName, program, characterName.Prefix(), DialogueStartFormat);
+            var dialogue = Dialogues.CreateAndAddCustom_DialogueSO(dialogueName, program, characterName.Prefix(), dialogueStart);
 
             // Speaker
             var speaker = CreateScriptable<SpeakerData>();
