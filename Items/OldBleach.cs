@@ -12,7 +12,7 @@ namespace BOSpecialFools.Items
         public static void Init()
         {
             var name = "Old Bleach";
-            var flav = "\"A cure for death, inanimacy and your head being on fire. Just drink it and you're good to go!\"";
+            var flav = "\"RIP 2023-2026\"";
             var desc = "This party member no longer has any passives.";
 
             NewItem<BasicWearable>(ID)
