@@ -1,0 +1,24 @@
+﻿title: 157Fools_WreathDialogue_FreeFool
+tags:
+---
+<<LeftSet Nowak>>
+<<RightSet 157Fools_Wreath>>
+
+<<LeftFocus>>
+<<LeftSound>>
+Hey, are you still willing to tag along with us?
+
+<<if HasPartySpace() is true>>
+    <<HideRoomNPCs>>
+    <<HireCharacter 157Fools_Wreath_CH>>
+    <<SaveProgress>>
+
+    <<RightFocus>>
+    <<RightSound>>
+    Yes
+<<else>>
+    <<RightFocus>>
+    <<RightSound>>
+    No
+<<endif>>
+===
