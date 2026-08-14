@@ -15,10 +15,10 @@ TagManager:
   - 
   - 
   - 
+  - CombatAbility
   - 
   - 
-  - 
-  - 
+  - PostProcessing
   - 
   - 
   - 
@@ -38,6 +38,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Sky
+    uniqueID: 594083233
+    locked: 0
+  - name: Background
+    uniqueID: 1090789793
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 1418609539
     locked: 0
