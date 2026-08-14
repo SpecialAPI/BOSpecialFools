@@ -61,7 +61,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="AssetBundle\AssetBundles\" />
+    <EmbeddedResource Include="AssetBundle\AssetBundles\157fools" />
   </ItemGroup>
 
 </Project>
