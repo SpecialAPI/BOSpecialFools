@@ -15,7 +15,7 @@ namespace BOSpecialFools
 
         public static void Init()
         {
-            MakeFreeFool(Wreath.ID, "Wreath", PortraitDirection.LooksLeft, new Color32(91, 65, 90, 255), [Zones.ShoreHardID]);
+            MakeFreeFool(Wreath.ID, "Wreath", PortraitDirection.LooksLeft, new Color32(153, 229, 80, 255), [Zones.ShoreHardID]);
         }
 
         public static void MakeFreeFool(string characterID, string characterName, PortraitDirection portraitDir, Color textColor, string[] zones)
