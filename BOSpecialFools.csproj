@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="bobuild.bat" />
     <None Remove="Resources\Items\Item19.png" />
     <None Remove="Resources\Items\OldBleach.png" />
     <None Remove="Resources\Items\TrueZeal.png" />
@@ -72,5 +73,9 @@
   <ItemGroup>
     <EmbeddedResource Include="AssetBundle\AssetBundles\157fools" />
   </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="set &quot;outdir=$(OutDir)&quot;&#xD;&#xA;set &quot;assemblyname=$(AssemblyName)&quot;&#xD;&#xA;call bobuild.bat" />
+  </Target>
 
 </Project>
