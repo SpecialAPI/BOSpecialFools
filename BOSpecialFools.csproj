@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="bobuild.bat" />
     <None Remove="Resources\Items\Item19.png" />
     <None Remove="Resources\Items\OldBleach.png" />
     <None Remove="Resources\Items\TrueZeal.png" />
