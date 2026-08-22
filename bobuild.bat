@@ -1,4 +1,4 @@
-set "modfolder=BOStuffPack"
+set "modfolder=BOSpecialFools"
 set "steampath=%programfiles(x86)%\Steam"
 set "modinfofolder=ModInfo"
 
