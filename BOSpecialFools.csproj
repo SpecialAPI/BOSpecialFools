@@ -44,7 +44,7 @@
 
   <ItemGroup>
     <PackageReference Include="BepInEx.Core" Version="5.4.21" />
-    <PackageReference Include="UnityEngine.Modules" Version="2020.3.26">
+    <PackageReference Include="UnityEngine.Modules" Version="2020.3.49">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>compile</IncludeAssets>
     </PackageReference>
