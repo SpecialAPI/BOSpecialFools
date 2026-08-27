@@ -1,10 +1,7 @@
-set "modfolder=BOSpecialFools"
-set "steampath=%programfiles(x86)%\Steam"
-set "modinfofolder=ModInfo"
-set "dllfolder=plugins"
+set "gamepath=%programfiles(x86)%\Steam\steamapps\common\Brutal Orchestra"
 
 ::===================================================================
-set "modpath=%steampath%\steamapps\common\Brutal Orchestra\BrutalOrchestra_Data\StreamingAssets\mods\%modfolder%"
+set "modpath=%gamepath%\BrutalOrchestra_Data\StreamingAssets\mods\%modfolder%"
 set "dlldest=%modpath%\%dllfolder%"
 echo Mod folder: %modpath%
 
