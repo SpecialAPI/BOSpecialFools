@@ -27,6 +27,7 @@ namespace BOSpecialFools
             
             // Characters
             Wreath.Init();
+            F23.Init();
 
             // Items
             OldBleach.Init();

@@ -7,6 +7,44 @@ namespace BOSpecialFools.Tools
 {
     public static class LocalTargetingTools
     {
+        public static BaseCombatTargettingSO Add(this BaseCombatTargettingSO a, BaseCombatTargettingSO b, bool? areTargetAllies = null, bool? areTargetSlots = null)
+        {
+            AddTargeting j;
+
+            if (a is AddTargeting aj)
+            {
+                if (b is AddTargeting bj)
+                    aj.targeting.AddRange(bj.targeting);
+                else
+                    aj.targeting.Add(b);
+
+                j = aj;
+            }
+            else if (b is AddTargeting bj)
+            {
+                bj.targeting.Insert(0, a);
+
+                j = bj;
+            }
+            else
+            {
+                j = CreateScriptable<AddTargeting>();
+
+                j.targeting.Add(a);
+                j.areTargetAllies = a.AreTargetAllies;
+                j.areTargetSlots = a.AreTargetSlots;
+
+                j.targeting.Add(b);
+            }
+
+            if (areTargetAllies is bool ata)
+                j.areTargetAllies = ata;
+            if (areTargetSlots is bool ats)
+                j.areTargetSlots = ats;
+
+            return j;
+        }
+
         public static BaseCombatTargettingSO Join(this BaseCombatTargettingSO a, BaseCombatTargettingSO b, bool? areTargetAllies = null, bool? areTargetSlots = null)
         {
             JoinTargeting j;
@@ -54,7 +92,7 @@ namespace BOSpecialFools.Tools
             return f;
         }
 
-        public static BaseCombatTargettingSO FilterUnitByDamagedThisTurn(this BaseCombatTargettingSO orig, bool needsToBeDamaged)
+        public static BaseCombatTargettingSO FilterUnitByDamagedThisTurn(this BaseCombatTargettingSO orig, bool needsToBeDamaged = true)
         {
             var f = CreateScriptable<UnitFilterByDamagedThisTurnTargeting>();
             f.orig = orig;
@@ -68,6 +106,16 @@ namespace BOSpecialFools.Tools
             var f = CreateScriptable<UnitFilterByEntityIDTargeting>();
             f.orig = orig;
             f.validIDs = validIDs;
+
+            return f;
+        }
+
+        public static BaseCombatTargettingSO FilterTargetByFieldEffect(this BaseCombatTargettingSO orig, FieldEffect_SO field, bool needsToHaveField = true)
+        {
+            var f = CreateScriptable<TargetFilterByFieldEffectTargeting>();
+            f.orig = orig;
+            f.field = field;
+            f.needsToHaveField = needsToHaveField;
 
             return f;
         }

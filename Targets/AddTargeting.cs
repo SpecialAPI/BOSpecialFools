@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BOSpecialFools.Targets
 {
-    public class JoinTargeting : BaseCombatTargettingSO
+    public class AddTargeting : BaseCombatTargettingSO
     {
         public List<BaseCombatTargettingSO> targeting = [];
         public bool areTargetAllies;
@@ -19,14 +19,7 @@ namespace BOSpecialFools.Targets
             var targets = new List<TargetSlotInfo>();
 
             foreach (var t in targeting)
-            {
-                var targetsHere = t.GetTargets(slots, casterSlotID, isCasterCharacter);
-                foreach(var t2 in targetsHere)
-                {
-                    if(!targets.Contains(t2))
-                        targets.Add(t2);
-                }
-            }
+                targets.AddRange(t.GetTargets(slots, casterSlotID, isCasterCharacter));
 
             return [..targets];
         }

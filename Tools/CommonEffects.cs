@@ -43,6 +43,9 @@ namespace BOSpecialFools.Tools
         public static readonly EffectSO ApplyFire = ApplyField(StatusField.OnFire);
         public static readonly EffectSO ApplyShield = ApplyField(StatusField.Shield);
 
+        public static readonly EffectSO RerollTargetAbilities = CreateScriptable<ReRollTargetTimelineAbilityEffect>();
+        public static readonly EffectSO RerollRandomAbilities = CreateScriptable<ReRollRandomTimelineAbilityEffect>();
+
         public static EffectSO ApplyStatus(StatusEffect_SO status, bool oneRandomTarget = false)
         {
             var e = CreateScriptable<StatusEffect_Apply_Effect>();
