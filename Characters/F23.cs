@@ -35,7 +35,7 @@ namespace BOSpecialFools.Characters
                     Effects.GenerateEffect(CommonEffects.RerollTargetAbilities, abilityAReroll, Targeting.Slot_Front),
                 })
                 .AddIntent(Targeting.Slot_Front, IntentForDamage(abilityADamage), IntentType_GameIDs.Field_Shield.ToString(), IntentType_GameIDs.Misc.ToString())
-                .CharacterAbility(Pigments.Red, Pigments.Yellow, Pigments.Yellow);
+                .CharacterAbility(Pigments.Yellow, Pigments.Yellow, Pigments.Red);
 
                 var abBTargeting = Targeting.Slot_OpponentAllSlots.FilterTargetByFieldEffect(StatusField.Shield);
                 var abBIntentTargeting = abBTargeting.Join(Targeting.Slot_OpponentSides);
