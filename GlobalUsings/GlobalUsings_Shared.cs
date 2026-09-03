@@ -44,9 +44,9 @@ global using static Pentacle.Tools.ScriptableObjectTools;
 global using static Pentacle.Tools.IntentTools;
 global using static Pentacle.Tools.IntTools;
 
-global using Grimoire.Content.StatusEffect;
-global using Grimoire.Content.Passive;
-global using Grimoire.Content.Intent;
+global using Grimoire.StatusEffect;
+global using Grimoire.Passive;
+global using Grimoire.Intent;
 
 global using Object = UnityEngine.Object;
 global using Random = UnityEngine.Random;
