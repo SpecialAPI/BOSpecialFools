@@ -23,35 +23,35 @@ namespace BOSpecialFools.Characters
                 var health = RankedValue(9, 10, 11, 12);
 
                 var abilityADamage = RankedValue(9, 12, 16, 19);
-                var abilityAFog = 3;
+                var abilityAMist = 3;
                 var abilityAReroll = 1;
                 var abilityA = NewRankedAbility(AbilityAIDs)
-                .SetBasicInformationCharacter($"Ability A {abilityRank}", $"Deal {abilityADamage} damage to the Opposing enemy. Apply {abilityAFog} Fog to the Opposing position.\nReroll {abilityAReroll} of the Opposing enemy's abilities.")
+                .SetBasicInformationCharacter($"Ability A {abilityRank}", $"Deal {abilityADamage} damage to the Opposing enemy. Apply {abilityAMist} Mist to the Opposing position.\nReroll {abilityAReroll} of the Opposing enemy's abilities.")
                 .SetVisuals(Visuals.Equal, Targeting.Slot_Front)
                 .SetEffects(new()
                 {
                     Effects.GenerateEffect(CommonEffects.Damage, abilityADamage, Targeting.Slot_Front),
-                    Effects.GenerateEffect(CommonEffects.ApplyField(StatusField.Shield), abilityAFog, Targeting.Slot_Front),
+                    Effects.GenerateEffect(CommonEffects.ApplyField(GrimoireStatusField.Mist), abilityAMist, Targeting.Slot_Front),
                     Effects.GenerateEffect(CommonEffects.RerollTargetAbilities, abilityAReroll, Targeting.Slot_Front),
                 })
-                .AddIntent(Targeting.Slot_Front, IntentForDamage(abilityADamage), IntentType_GameIDs.Field_Shield.ToString(), IntentType_GameIDs.Misc.ToString())
+                .AddIntent(Targeting.Slot_Front, IntentForDamage(abilityADamage), StatusFieldIntents.Field_Mist.ToString(), IntentType_GameIDs.Misc.ToString())
                 .CharacterAbility(Pigments.Yellow, Pigments.Yellow, Pigments.Red);
 
-                var abBTargeting = Targeting.Slot_OpponentAllSlots.FilterTargetByFieldEffect(StatusField.Shield);
+                var abBTargeting = Targeting.Slot_OpponentAllSlots.FilterTargetByFieldEffect(GrimoireStatusField.Mist);
                 var abBIntentTargeting = abBTargeting.Join(Targeting.Slot_OpponentSides);
                 var abilityBDamage = RankedValue(8, 10, 13, 15);
-                var abilityBFog = 3;
+                var abilityBMist = 3;
                 var abilityB = NewRankedAbility(AbilityBIDs)
-                .SetBasicInformationCharacter($"Ability B {abilityRank}", $"Apply 3 Fog to the Left and Right enemy positions. Deal {abilityBDamage} damage to all enemy positions with Fog.")
+                .SetBasicInformationCharacter($"Ability B {abilityRank}", $"Apply 3 Mist to the Left and Right enemy positions. Deal {abilityBDamage} damage to all enemy positions with Mist.")
                 .SetEffects(new()
                 {
-                    Effects.GenerateEffect(CommonEffects.ApplyField(StatusField.Shield), abilityBFog, Targeting.Slot_OpponentSides),
+                    Effects.GenerateEffect(CommonEffects.ApplyField(GrimoireStatusField.Mist), abilityBMist, Targeting.Slot_OpponentSides),
                     Effects.GenerateEffect(CommonEffects.Animation(Visuals.Conductor), 0, abBTargeting),
                     Effects.GenerateEffect(CommonEffects.Damage, abilityBDamage, abBTargeting)
                 })
                 .SetIntents(new()
                 {
-                    TargetIntent(Targeting.Slot_OpponentSides, IntentType_GameIDs.Field_Shield.ToString()),
+                    TargetIntent(Targeting.Slot_OpponentSides, StatusFieldIntents.Field_Mist.ToString()),
                     TargetIntent(abBIntentTargeting, IntentForDamage(abilityBDamage))
                 })
                 .CharacterAbility(Pigments.Red, Pigments.Red, Pigments.Red, Pigments.Blue);
