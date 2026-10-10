@@ -39,8 +39,8 @@ namespace BOSpecialFools.Characters
 
                 var abBTargeting = Targeting.Slot_OpponentAllSlots.FilterTargetByFieldEffect(GrimoireStatusField.Mist);
                 var abBIntentTargeting = abBTargeting.Join(Targeting.Slot_OpponentSides);
-                var abilityBDamage = RankedValue(8, 10, 13, 15);
-                var abilityBMist = 3;
+                var abilityBDamage = RankedValue(7, 9, 12, 14);
+                var abilityBMist = 2;
                 var abilityB = NewRankedAbility(AbilityBIDs)
                 .SetBasicInformationCharacter($"Ability B {abilityRank}", $"Apply 3 Mist to the Left and Right enemy positions. Deal {abilityBDamage} damage to all enemy positions with Mist.")
                 .SetEffects(new()
