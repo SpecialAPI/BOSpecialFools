@@ -15,6 +15,16 @@
     <Compile Remove="AssetBundle\**" />
     <EmbeddedResource Remove="AssetBundle\**" />
     <None Remove="AssetBundle\**" />
+    <None Remove="Resources\Characters\23\23Back.png" />
+    <EmbeddedResource Include="Resources\Characters\23\23Back.png" />
+    <None Remove="Resources\Characters\23\23Front.png" />
+    <EmbeddedResource Include="Resources\Characters\23\23Front.png" />
+    <None Remove="Resources\Characters\23\23Locked.png" />
+    <EmbeddedResource Include="Resources\Characters\23\23Locked.png" />
+    <None Remove="Resources\Characters\23\23OW.png" />
+    <EmbeddedResource Include="Resources\Characters\23\23OW.png" />
+    <None Remove="Resources\Characters\23\23Unlocked.png" />
+    <EmbeddedResource Include="Resources\Characters\23\23Unlocked.png" />
   </ItemGroup>
 
   <ItemGroup>
