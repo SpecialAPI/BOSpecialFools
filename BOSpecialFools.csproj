@@ -52,7 +52,7 @@
       <HintPath>..\References\BrutalOrchestra\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="BrutalAPI">
-      <HintPath>..\Pentacle\bin\Release\netstandard2.0\BrutalAPI.dll</HintPath>
+      <HintPath>..\References\BrutalOrchestra\BrutalAPI.dll</HintPath>
     </Reference>
     <Reference Include="Grimoire">
       <HintPath>..\Grimoire\bin\Debug\netstandard2.0\Grimoire.dll</HintPath>
