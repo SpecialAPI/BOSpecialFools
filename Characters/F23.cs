@@ -42,7 +42,7 @@ namespace BOSpecialFools.Characters
                 var abilityBDamage = RankedValue(7, 9, 12, 14);
                 var abilityBMist = 2;
                 var abilityB = NewRankedAbility(AbilityBIDs)
-                .SetBasicInformationCharacter($"Ability B {abilityRank}", $"Apply 3 Mist to the Left and Right enemy positions. Deal {abilityBDamage} damage to all enemy positions with Mist.")
+                .SetBasicInformationCharacter($"Ability B {abilityRank}", $"Apply {abilityBMist} Mist to the Left and Right enemy positions. Deal {abilityBDamage} damage to all enemy positions with Mist.")
                 .SetEffects(new()
                 {
                     Effects.GenerateEffect(CommonEffects.ApplyField(GrimoireStatusField.Mist), abilityBMist, Targeting.Slot_OpponentSides),
