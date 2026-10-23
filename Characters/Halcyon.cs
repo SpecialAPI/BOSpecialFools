@@ -44,9 +44,9 @@ namespace BOSpecialFools.Characters
 
             ch.AddToDatabase();
             
-            var menu = ch.GenerateMenuCharacter("HalcyonUnlocked", "HalcyonLocked");
-            menu.SetAsFullDPS();
-            menu.AddToDatabase();
+            //var menu = ch.GenerateMenuCharacter("HalcyonUnlocked", "HalcyonLocked");
+            //menu.SetAsFullDPS();
+            //menu.AddToDatabase();
         }
     }
 }
