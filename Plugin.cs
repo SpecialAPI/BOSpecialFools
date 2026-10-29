@@ -31,10 +31,10 @@ namespace BOSpecialFools
             //Halcyon.Init();
 
             // Items
-            OldBleach.Init();
-            TrueZeal.Init();
-            Item19.Init();
-            KillingMachine.Init();
+            //OldBleach.Init();
+            //TrueZeal.Init();
+            //Item19.Init();
+            //KillingMachine.Init();
 
             FreeFoolEvents.Init();
         }
