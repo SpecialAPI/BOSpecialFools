@@ -14,7 +14,7 @@ namespace BOSpecialFools
     {
         public const string MOD_GUID        = "157.Fools";
         public const string MOD_NAME        = "157 FOOLS";
-        public const string MOD_VERSION     = "0.0.2";
+        public const string MOD_VERSION     = "0.0.3";
         public const string MOD_PREFIX      = "157Fools";
 
         public static readonly ModProfile Profile       = GenerateProfile();
